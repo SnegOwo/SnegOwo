@@ -70,4 +70,9 @@ Belgian developer, AI enthusiast and technology lover.
 
 <br/>
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/signature-dark.png" />
+  <img src="assets/signature-light.png" width="150" alt="Sneg's signature" />
+</picture>
+
 <sub>Made with 🍓 and too much Hayasaka. Thanks for stopping by!</sub>
