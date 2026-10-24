@@ -51,7 +51,7 @@ and pretending my todo list isn't 40 items long.
 <table>
   <tr>
     <td width="120" valign="top">
-      <img src="https://raw.githubusercontent.com/SnegOwo/Better-Brush/main/assets/icons/LogoBetterBrush.png" width="110" alt="Better-Brush logo" />
+      <img src="https://raw.githubusercontent.com/SnegOwo/Better-Brush/master/assets/icons/LogoBetterBrush.png" width="110" alt="Better-Brush logo" />
     </td>
     <td valign="top">
       <h3><a href="https://github.com/SnegOwo/Better-Brush">Better-Brush</a></h3>
