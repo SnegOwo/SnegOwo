@@ -10,15 +10,7 @@
   <br/>
   <br/>
 
-  <a href="https://x.com/_Sneg_Ok">
-    <img src="https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white&label=Follow" alt="X / Twitter" />
-  </a>
-  <a href="https://huggingface.co/Sneg0wo">
-    <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black&label=Models" alt="Hugging Face" />
-  </a>
-  <a href="https://sneg.dev">
-    <img src="https://img.shields.io/badge/sneg.dev-4A90D9?style=flat-square&logo=googlechrome&logoColor=white&label=Website" alt="sneg.dev" />
-  </a>
+  <a href="https://x.com/_Sneg_Ok"><img src="https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white&label=Follow" alt="X / Twitter" /></a>&nbsp;<a href="https://huggingface.co/Sneg0wo"><img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black&label=Models" alt="Hugging Face" /></a>&nbsp;<a href="https://sneg.dev"><img src="https://img.shields.io/badge/sneg.dev-4A90D9?style=flat-square&logo=googlechrome&logoColor=white&label=Website" alt="sneg.dev" /></a>
 
   <br/>
   <br/>
