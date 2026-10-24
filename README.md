@@ -36,10 +36,6 @@
 
 Belgian developer, AI enthusiast and technology lover.
 
-I like building things, learning in public, and falling down rabbit holes at 2am.
-
-<img src="https://skillicons.dev/icons?i=python,pytorch,pyside,git,linux,vscode,ffmpeg,github" alt="Python, PyTorch, PySide6, Git, Linux, VS Code, FFmpeg, GitHub" />
-
 ## ✨ Featured
 
 <table>
