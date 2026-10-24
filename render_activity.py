@@ -3,6 +3,8 @@
 
 Reads the contributor calendar (aggregate counts only, never repo names) and
 writes a dark and a light PNG into assets/.
+
+Rendered at SCALE x the display size so text stays crisp on retina screens.
 """
 import datetime as dt
 import json
@@ -11,6 +13,8 @@ import sys
 import urllib.request
 
 LOGIN = "SnegOwo"
+SCALE = 2  # render 1680x500, display at 840x250
+
 THEME = {
     "dark": {
         "bg": (13, 17, 23),
@@ -41,9 +45,6 @@ query($login: String!, $from: DateTime!, $to: DateTime!) {
         weeks { contributionDays { contributionCount contributionLevel } }
       }
       totalCommitContributions
-      totalIssueContributions
-      totalPullRequestContributions
-      totalPullRequestReviewContributions
     }
   }
 }
@@ -71,15 +72,19 @@ def fetch(token, days=365):
 
 def pick_font(size, bold=True):
     from PIL import ImageFont
-    wanted = ["DejaVuSans-Bold.ttf" if bold else "DejaVuSans.ttf", "segoeuib.ttf" if bold else "segoeui.ttf"]
-    dirs = [os.path.join(os.path.dirname(__file__), "fonts"),
-            "C:/Windows/Fonts", "/usr/share/fonts/truetype/dejavu", "/usr/share/fonts/TTF",
-            "/usr/share/fonts/truetype/liberation"]
+    size = size * SCALE
+    wanted = ["DejaVuSans-Bold.ttf" if bold else "DejaVuSans.ttf",
+              "segoeuib.ttf" if bold else "segoeui.ttf"]
+    dirs = [os.path.join(os.path.dirname(os.path.abspath(__file__)), "fonts"),
+            "C:/Windows/Fonts", "/usr/share/fonts/truetype/dejavu",
+            "/usr/share/fonts/TTF", "/usr/share/fonts/truetype/liberation",
+            "/usr/share/fonts/truetype/freefont"]
     for name in wanted:
         for d in dirs:
             p = os.path.join(d, name)
             if os.path.exists(p):
                 return ImageFont.truetype(p, size)
+    print("warning: no TTF font found, using PIL default", file=sys.stderr)
     return ImageFont.load_default(size)
 
 
@@ -90,15 +95,16 @@ LEVEL_COLOR = {"NONE": 0, "FIRST_QUARTILE": 1, "SECOND_QUARTILE": 2,
 def render(mode, data, out_path):
     from PIL import Image, ImageDraw
     t = THEME[mode]
-    W, H, pad = 840, 250, 26
+    pad = 26 * SCALE
+    W, H = 840 * SCALE, 250 * SCALE
     img = Image.new("RGB", (W, H), t["bg"])
     d = ImageDraw.Draw(img)
-    d.rounded_rectangle([0, 0, W - 1, H - 1], radius=12, outline=t["border"], width=1)
+    d.rounded_rectangle([0, 0, W - 1, H - 1], radius=12 * SCALE,
+                        outline=t["border"], width=1 * SCALE)
 
     cal = data["contributionCalendar"]
     days = [day for week in cal["weeks"] for day in week["contributionDays"]]
-    streak = active = 0
-    best = 0
+    streak = active = best = 0
     for day in days:
         if day["contributionCount"] > 0:
             active += 1
@@ -107,47 +113,53 @@ def render(mode, data, out_path):
         else:
             streak = 0
 
-    f_title, f_big, f_sub = pick_font(21), pick_font(46), pick_font(14)
-    f_stat, f_statlbl = pick_font(24), pick_font(12)
+    f_title = pick_font(21)
+    f_big = pick_font(46)
+    f_sub = pick_font(14, bold=False)
+    f_stat = pick_font(24)
+    f_statlbl = pick_font(12, bold=False)
+    f_small = pick_font(11, bold=False)
 
     # --- left column -------------------------------------------------------
     d.text((pad, pad), "GitHub Activity", font=f_title, fill=t["title"])
     total = cal["totalContributions"]
-    d.text((pad - 2, pad + 34), str(total), font=f_big, fill=t["big"])
+    d.text((pad - 2 * SCALE, pad + 34 * SCALE), str(total), font=f_big, fill=t["big"])
     tw = d.textlength(str(total), font=f_big)
-    d.text((pad + tw + 12, pad + 68), "contributions\nin the last year", font=f_sub, fill=t["muted"], spacing=3)
+    d.text((pad + tw + 12 * SCALE, pad + 68 * SCALE),
+           "contributions\nin the last year", font=f_sub, fill=t["muted"], spacing=4 * SCALE)
 
     stats = [("Commits", data["totalCommitContributions"]),
              ("Best streak", f"{best}d"),
-             ("Active days", f"{active}")]
-    sy = pad + 132
+             ("Active days", str(active))]
+    sy = pad + 132 * SCALE
     for i, (lbl, val) in enumerate(stats):
-        x = pad + i * 132
+        x = pad + i * 132 * SCALE
         d.text((x, sy), str(val), font=f_stat, fill=t["big"])
-        d.text((x, sy + 30), lbl, font=f_statlbl, fill=t["label"])
+        d.text((x, sy + 30 * SCALE), lbl, font=f_statlbl, fill=t["label"])
 
     # --- heatmap -----------------------------------------------------------
     weeks = cal["weeks"][-23:]
-    cell, gap = 13, 3
+    cell, gap = 13 * SCALE, 3 * SCALE
     step = cell + gap
     hm_w = len(weeks) * step - gap
     hx = W - pad - hm_w
-    hy = pad + 40
-    f_small = pick_font(11, bold=False)
-    d.text((hx, pad + 6), "Last 23 weeks", font=f_sub, fill=t["muted"])
+    hy = pad + 40 * SCALE
+    d.text((hx, pad + 6 * SCALE), "Last 23 weeks", font=f_sub, fill=t["muted"])
     for wi, week in enumerate(weeks):
         for di, day in enumerate(week["contributionDays"]):
             x = hx + wi * step
             y = hy + di * step
-            d.rounded_rectangle([x, y, x + cell, y + cell], radius=2,
+            d.rounded_rectangle([x, y, x + cell, y + cell], radius=2 * SCALE,
                                 fill=t["scale"][LEVEL_COLOR[day["contributionLevel"]]])
-    legend_y = hy + 7 * step + 6
-    lx = hx + hm_w - 152
-    d.text((lx, legend_y + 1), "Less", font=f_small, fill=t["label"])
+    legend_y = hy + 7 * step + 6 * SCALE
+    lx = hx + hm_w - 152 * SCALE
+    d.text((lx, legend_y + 1 * SCALE), "Less", font=f_small, fill=t["label"])
     for i in range(5):
-        x = lx + 30 + i * step
-        d.rounded_rectangle([x, legend_y, x + cell, legend_y + cell], radius=2, fill=t["scale"][i])
-    d.text((lx + 30 + 5 * step + 5, legend_y + 1), "More", font=f_small, fill=t["label"])
+        x = lx + 30 * SCALE + i * step
+        d.rounded_rectangle([x, legend_y, x + cell, legend_y + cell],
+                            radius=2 * SCALE, fill=t["scale"][i])
+    d.text((lx + 30 * SCALE + 5 * step + 5 * SCALE, legend_y + 1 * SCALE),
+           "More", font=f_small, fill=t["label"])
 
     img.save(out_path, optimize=True)
     return total
@@ -156,14 +168,17 @@ def render(mode, data, out_path):
 def main():
     token = os.environ.get("GH_TOKEN") or os.environ.get("GITHUB_TOKEN")
     if not token:
-        raise SystemExit("Set GH_TOKEN")
+        raise SystemExit(
+            "GH_TOKEN is not set. In GitHub Actions this means the PROFILE_TOKEN "
+            "secret is missing or empty:  gh secret set PROFILE_TOKEN -R SnegOwo/SnegOwo"
+        )
     data = fetch(token)
     here = os.path.dirname(os.path.abspath(__file__))
     assets = os.path.join(here, "assets")
     os.makedirs(assets, exist_ok=True)
     total = render("dark", data, os.path.join(assets, "activity-dark.png"))
     render("light", data, os.path.join(assets, "activity-light.png"))
-    print(f"total contributions: {total}")
+    print(f"total contributions: {total}  ({SCALE}x scale)")
 
 
 if __name__ == "__main__":

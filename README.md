@@ -10,17 +10,20 @@
   <br/>
   <br/>
 
-  <p>
-    <a href="https://x.com/_Sneg_Ok">
-      <img src="https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white&label=Follow" alt="X / Twitter" />
-    </a>
-    <a href="https://huggingface.co/Sneg0wo">
-      <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black&label=Models" alt="Hugging Face" />
-    </a>
-    <a href="https://sneg.dev">
-      <img src="https://img.shields.io/badge/sneg.dev-4A90D9?style=flat-square&logo=googlechrome&logoColor=white&label=Website" alt="sneg.dev" />
-    </a>
-  </p>
+  <a href="https://x.com/_Sneg_Ok">
+    <img src="https://img.shields.io/badge/X-000000?style=flat-square&logo=x&logoColor=white&label=Follow" alt="X / Twitter" />
+  </a>
+  <a href="https://huggingface.co/Sneg0wo">
+    <img src="https://img.shields.io/badge/Hugging%20Face-FFD21E?style=flat-square&logo=huggingface&logoColor=black&label=Models" alt="Hugging Face" />
+  </a>
+  <a href="https://sneg.dev">
+    <img src="https://img.shields.io/badge/sneg.dev-4A90D9?style=flat-square&logo=googlechrome&logoColor=white&label=Website" alt="sneg.dev" />
+  </a>
+
+  <br/>
+  <br/>
+
+  <img src="https://readme-typing-svg.demolab.com?lines=Belgian+developer;AI+enthusiast;technology+lover;Hayasaka+enjoyer&center=true&width=600&height=50&duration=2600&pause=700&color=FFD21E&vCenter=true&font=Fira+Code" alt="Belgian developer, AI enthusiast, technology lover" />
 
   <br/>
 
@@ -29,11 +32,13 @@
 
 ---
 
-## 🧋 About
+## 🪶 About
 
 Belgian developer, AI enthusiast and technology lover.
 
 I like building things, learning in public, and falling down rabbit holes at 2am.
+
+<img src="https://skillicons.dev/icons?i=python,pytorch,pyside,git,linux,vscode,ffmpeg,github" alt="Python, PyTorch, PySide6, Git, Linux, VS Code, FFmpeg, GitHub" />
 
 ## ✨ Featured
 
@@ -61,8 +66,8 @@ I like building things, learning in public, and falling down rabbit holes at 2am
 ## 📊 Activity
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.png" />
-  <img src="assets/activity-light.png" alt="Sneg's GitHub activity over the last year" />
+  <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.png" width="840" />
+  <img src="assets/activity-light.png" width="840" alt="Sneg's GitHub activity over the last year" />
 </picture>
 
 <sub>Refreshed automatically every day.</sub>
