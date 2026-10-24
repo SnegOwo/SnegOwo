@@ -1,14 +1,14 @@
 <div align="center">
-  <img src="assets/pfp.jpg" width="170" alt="Sneg profile picture" />
-
   <h1>Hey, I'm Sneg 👋</h1>
 
   <p>
-    <b>Python dev</b> from Belgium &nbsp;•&nbsp; building AI video tools<br/>
-    <i>Hayasaka believer, AMV enjoyer, terminal dweller</i>
+    <b>From Belgium</b> &nbsp;•&nbsp; AI, tech &amp; too much Hayasaka
   </p>
 
   <img src="assets/banner.gif" width="250" alt="Hayasaka saying hi" />
+
+  <br/>
+  <br/>
 
   <p>
     <a href="https://x.com/_Sneg_Ok">
@@ -22,6 +22,8 @@
     </a>
   </p>
 
+  <br/>
+
   <img src="https://count.getloli.com/@Sneg?theme=rule34&padding=7&offset=0&align=top&scale=1.0&pixelated=1&darkmode=auto" alt="visitor counter" />
 </div>
 
@@ -29,22 +31,9 @@
 
 ## 🧋 About
 
-I write **Python** for fun and profit, mostly around **video, AI and image** work.
-Right now I'm obsessed with making ML segmentation tools that editors can actually use —
-local, fast, no account required, no cloud nonsense.
+Belgian developer, AI enthusiast and technology lover.
 
-When I'm not coding you'll find me making AMVs, collecting Hayasaka screenshots
-and pretending my todo list isn't 40 items long.
-
-## 🛠️ Toolbox
-
-!Python
-!PyTorch
-!PySide6
-!Git
-!Linux
-!VS Code
-!FFmpeg
+I like building things, learning in public, and falling down rabbit holes at 2am.
 
 ## ✨ Featured
 
@@ -64,17 +53,19 @@ and pretending my todo list isn't 40 items long.
         <img src="https://img.shields.io/badge/SAM%202-AI-ff6b6b?style=flat-square" alt="SAM 2" />
         <img src="https://img.shields.io/badge/Local-no%20account-success?style=flat-square" alt="Local, no account" />
       </p>
-      <p>🌐 <a href="https://snegowo.github.io/Better-Brush/">Live demo</a></p>
+      <p>🎬 <a href="https://www.youtube.com/playlist?list=PLEmNRCGk7DI0">Watch the walkthrough playlist</a></p>
     </td>
   </tr>
 </table>
 
-## 📊 GitHub stats
+## 📊 Activity
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats.vercel.app/api?username=SnegOwo&show_icons=true&hide_border=true&bg_color=0d1117&title_color=FFD21E&icon_color=4A90D9&text_color=c9d1d9" />
-  <img src="https://github-readme-stats.vercel.app/api?username=SnegOwo&show_icons=true&hide_border=true&bg_color=ffffff&title_color=0d1117&icon_color=4A90D9&text_color=24292f" alt="Sneg's GitHub stats" />
+  <source media="(prefers-color-scheme: dark)" srcset="assets/activity-dark.png" />
+  <img src="assets/activity-light.png" alt="Sneg's GitHub activity over the last year" />
 </picture>
+
+<sub>Refreshed automatically every day.</sub>
 
 ## 🔗 Find me
 
